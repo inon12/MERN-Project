@@ -10,7 +10,18 @@ import { useFormik } from 'formik';
 import DatePicker from "react-datepicker";
 import { format} from 'date-fns'
 import 'react-datepicker/dist/react-datepicker.css';
+import {Card} from "@material-ui/core";
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 const deleteMember =  async (history,id)=>
 {
@@ -84,58 +95,65 @@ function Member(props)
         },
       });
     return (
-        <div>
-            <h1>{props.member.fullname}</h1>
-
-            Email:{props.member.email} <br/>
-            City:{props.member.city}  <br/>
-
-            <div>
-                Movies Watched<br/>
-                <Button color="primary" variant="contained"  type="button" onClick={()=> setSubFlag(!subFlag)}>
-                Subscribe to new movie
-                </Button> <br/>
-                <div style={{display : subFlag? 'none' : 'block'}}>
-                    Add new movie<br/>
-                    <form onSubmit={formik.handleSubmit}>
-                    <select  name="movieId"
-                    value={formik.values.movieId}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    style={{ display: 'block' }}>
-                         <option value=''>select movie</option>
-                        {
-                            moviesNotWatched.map((item,index)=>
+        <Card elevation={3} style={{width: '98%', margin: '2%'}}>
+            <Grid container spacing={2}>
+               <Grid item xs={4}>
+                    <Item><h2>{props.member.fullname}</h2>
+                            <img src={props.member.image} style={{height: '220px', maxWidth: '100%',margin: 'auto',display: 'block'}} alt={props.member.name}/>
+                            Email:{props.member.email} <br/>
+                            City:{props.member.city}  <br/>
+                            <Link to={'/members/editMember/'+props.member._id}><Button className={'Button'} variant='contained' color='primary'>Edit</Button></Link>
+                            <Link to='/movies/'><Button className={'Button'} variant='contained' color='secondary'onClick={()=>deleteMember(history,props.member._id)}>Delete</Button></Link>
+                            </Item>
+                </Grid>
+                <Grid item xs={8}>
+                    <Item>
+                        <h2>Movies Watched</h2>
+                        <ul>
                             {
-                                return <option key={index} value={item.movieId}>{item.movieName}</option>
-                            })
-                        }
-                    </select>
-                    <DatePicker
-                    name="date"
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
-                    />
-                    <Button color="primary" variant="contained"  type="submit"  >
-                    Subscribe
-                    </Button>
-                    </form>
-                </div>
-                <ul>
-                    {
-                        moviesWatch.map((item,index)=>
-                        {
-                            return <li key={index}><Link to={'/movies/all/'+item.movieId}>{item.movieName}</Link> ,{item.date} </li>
-                        })
-                    }
-                </ul>
-            </div>
-            <Link to={'/members/editMember/'+props.member._id}>
-            <input type="button" value="Edit" />
-            </Link>
-             <input type="button" value="Delete" onClick={()=>deleteMember(history,props.member._id)}/>
-        </div>
+                                moviesWatch.map((item,index)=>
+                                {
+                                    return <li key={index}><Link to={'/movies/all/'+item.movieId}>{item.movieName}</Link> ,{item.date} </li>
+                                })
+                            }
+                        </ul>
+                        <Button color="primary" variant="contained"  type="button" onClick={()=> setSubFlag(!subFlag)}>
+                                Subscribe to new movie
+                        </Button> <br/>
+                        <div style={{display : subFlag? 'none' : 'block'}}>
+                            Add new movie<br/>
+                            <form onSubmit={formik.handleSubmit}>
+                            <select  name="movieId"
+                            value={formik.values.movieId}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            style={{ display: 'block' }}>
+                                <option value=''>select movie</option>
+                                {
+                                    moviesNotWatched.map((item,index)=>
+                                    {
+                                        return <option key={index} value={item.movieId}>{item.movieName}</option>
+                                    })
+                                }
+                            </select>
+                            <DatePicker
+                            name="date"
+                            selected={startDate}
+                            onChange={date => setStartDate(date)}
+                            />
+                            <Button color="primary" variant="contained"  type="submit"  >
+                            Subscribe
+                            </Button>
+                            </form>
+                        </div>
+                    </Item>
+                </Grid>
+                
+            </Grid>
+        </Card>
+     
     )
+
 }
 
 export default Member;

@@ -9,6 +9,17 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 
 
@@ -68,57 +79,66 @@ function EditMovie() {
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="name"
-          name="name"
-          label="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
-        <TextField
-          fullWidth
-          id="genres"
-          name="genres"
-          label="genres"
-          value={formik.values.genres}
-          onChange={formik.handleChange}
-          error={formik.touched.genres && Boolean(formik.errors.genres)}
-          helperText={formik.touched.genres && formik.errors.genres}
-        />
-        <TextField
-          fullWidth
-          id="image"
-          name="image"
-          label="image url"
-          value={formik.values.image}
-          onChange={formik.handleChange}
-          error={formik.touched.image && Boolean(formik.errors.image)}
-          helperText={formik.touched.image && formik.errors.image}
-        />
-        <TextField
-          fullWidth
-          id="premiered"
-          name="premiered"
-          label="year premiered"
-          value={formik.values.premiered}
-          onChange={formik.handleChange}
-          error={formik.touched.premiered && Boolean(formik.errors.premiered)}
-          helperText={formik.touched.premiered && formik.errors.premiered}
-        />
-        <Button color="primary" variant="contained"  type="submit">
-          Update
-        </Button>
-        <Link to='/movies/all'>
-        <Button color="primary" variant="contained"  type="button">
-          Cancel
-        </Button>
-        </Link>
-      </form>
+      <h2 style={{textAlign : 'center'}}>Edit Movie</h2>
+      <Grid container spacing={2} alignItems="center"
+      justifyContent="center">
+                <Grid item xs={4}>
+                <Item>
+                  <form onSubmit={formik.handleSubmit}>
+                    <TextField
+                      fullWidth
+                      id="name"
+                      name="name"
+                      label="name"
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                      error={formik.touched.name && Boolean(formik.errors.name)}
+                      helperText={formik.touched.name && formik.errors.name}
+                    />
+                    <TextField
+                      fullWidth
+                      id="genres"
+                      name="genres"
+                      label="genres"
+                      value={formik.values.genres}
+                      onChange={formik.handleChange}
+                      error={formik.touched.genres && Boolean(formik.errors.genres)}
+                      helperText={formik.touched.genres && formik.errors.genres}
+                    />
+                    <TextField
+                      fullWidth
+                      id="image"
+                      name="image"
+                      label="image url"
+                      value={formik.values.image}
+                      onChange={formik.handleChange}
+                      error={formik.touched.image && Boolean(formik.errors.image)}
+                      helperText={formik.touched.image && formik.errors.image}
+                    />
+                    <TextField
+                      fullWidth
+                      id="premiered"
+                      name="premiered"
+                      label="year premiered"
+                      value={formik.values.premiered}
+                      onChange={formik.handleChange}
+                      error={formik.touched.premiered && Boolean(formik.errors.premiered)}
+                      helperText={formik.touched.premiered && formik.errors.premiered}
+                    />
+                    <Button color="primary" variant="contained"  type="submit">
+                      Update
+                    </Button>
+                    <Link to='/movies/all'>
+                    <Button color="primary" variant="contained"  type="button">
+                      Cancel
+                    </Button>
+                    </Link>
+                  </form>
+              </Item>
+            </Grid>
+      </Grid>
     </div>
+
   );
 };
 

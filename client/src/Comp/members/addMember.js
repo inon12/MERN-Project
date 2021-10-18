@@ -8,7 +8,17 @@ import {
   Link
 } from "react-router-dom";
 
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
+
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 const validationSchema = yup.object(
     {
@@ -42,49 +52,59 @@ function AddMember() {
   });
 
   return (
+
     <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="fullname"
-          name="fullname"
-          label="Full name"
-          value={formik.values.fullname}
-          onChange={formik.handleChange}
-          error={formik.touched.fullname && Boolean(formik.errors.fullname)}
-          helperText={formik.touched.fullname && formik.errors.fullname}
-        />
-        <TextField
-          fullWidth
-          id="email"
-          name="email"
-          label="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <TextField
-          fullWidth
-          id="city"
-          name="city"
-          label="city"
-          value={formik.values.city}
-          onChange={formik.handleChange}
-          error={formik.touched.city && Boolean(formik.errors.city)}
-          helperText={formik.touched.city && formik.errors.city}
-        />
-       
-        <Button color="primary" variant="contained"  type="submit">
-          Save
-        </Button>
-        <Link to='/members/all'>
-        <Button color="primary" variant="contained"  type="button">
-          Cancel
-        </Button>
-        </Link>
-      </form>
-    </div>
+      <h2 style={{textAlign : 'center'}}>Add Member</h2>
+    <Grid container spacing={2} alignItems="center"
+    justifyContent="center">
+                    
+                    <Grid item xs={4}>
+                     <Item><form onSubmit={formik.handleSubmit}>
+                            <TextField
+                              fullWidth
+                              id="fullname"
+                              name="fullname"
+                              label="Full name"
+                              value={formik.values.fullname}
+                              onChange={formik.handleChange}
+                              error={formik.touched.fullname && Boolean(formik.errors.fullname)}
+                              helperText={formik.touched.fullname && formik.errors.fullname}
+                            />
+                            <TextField
+                              fullWidth
+                              id="email"
+                              name="email"
+                              label="email"
+                              value={formik.values.email}
+                              onChange={formik.handleChange}
+                              error={formik.touched.email && Boolean(formik.errors.email)}
+                              helperText={formik.touched.email && formik.errors.email}
+                            />
+                            <TextField
+                              fullWidth
+                              id="city"
+                              name="city"
+                              label="city"
+                              value={formik.values.city}
+                              onChange={formik.handleChange}
+                              error={formik.touched.city && Boolean(formik.errors.city)}
+                              helperText={formik.touched.city && formik.errors.city}
+                            />
+                          
+                            <Button color="primary" variant="contained"  type="submit">
+                              Save
+                            </Button>
+                            <Link to='/members/all'>
+                            <Button color="primary" variant="contained"  type="button">
+                              Cancel
+                            </Button>
+                            </Link>
+                          </form>
+                      </Item>
+                   </Grid>
+                </Grid>
+                </div>
+   
   );
 };
 

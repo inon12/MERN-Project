@@ -9,7 +9,8 @@ let movieSchme = new appSchema (
         name : String,
         genres : [String],
         premiered : String,
-        image : String
+        image : String,
+        summary : String
     }
 )
 
