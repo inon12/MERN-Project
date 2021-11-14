@@ -27,7 +27,7 @@ function StartPage(props)
      const [fullname ,setFullName]=useState()
      useEffect (()=>
      {
-          setFullName(window.sessionStorage.getItem("fullname"))
+          setFullName(localStorage.getItem("fullname"))
      },[])
     return <div className={classes.root}>
           <AppBar position="sticky">

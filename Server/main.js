@@ -16,11 +16,15 @@ const moviesController = require ('./Controlles/moviesController')
 const usersController = require ('./Controlles/usersController')
 const membersController = require ('./Controlles/membersController')
 const subscriptionsController = require ('./Controlles/subscriptionsController')
+const loginController = require ('./Controlles/loginController')
+
+
 
 app.use('/api/movies',moviesController)
 app.use('/api/users',usersController)
 app.use('/api/members',membersController)
 app.use('/api/subscriptions',subscriptionsController)
+app.use('/api/login',loginController)
 
 app.listen(8000)
 

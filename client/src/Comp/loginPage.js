@@ -6,6 +6,8 @@ import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import{Link} from 'react-router-dom'
+
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -32,22 +34,25 @@ function Login(props) {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-        let flag=false;
-        let result= await axios.get("http://localhost:8000/api/users/")
-        let res2 = result.data.filter(x=>x.username === values.userName)
-        res2.forEach(element => {
-            if (element.password === values.password)
-                {
-                    window.sessionStorage.setItem("fullname", element.fullname);
-                    flag=true
-                }
-        });
-         if (flag)
-         {
-            props.setToken(true)
-         }
+        await axios.post("http://localhost:8000/api/login/",{
+          username : values.userName,
+          password : values.password
+        }).then(response => 
+          {
+            if (!response.data.auth)
+            {
+               props.setToken(false)
+            }
+            else
+            { 
+              localStorage.setItem("fullname",response.data.user.fullname)
+              localStorage.setItem("token",response.data.token);
+              props.setToken(true)
+            }
+          }
       
-    },
+        )
+      }
   });
 
   return (
@@ -57,7 +62,7 @@ function Login(props) {
     <Grid container spacing={2}  alignItems="center"
     justifyContent="center">
                <Grid item xs={4}>
-          <h2>Wellcom black</h2>
+          <h2>Wellcom back</h2>
           <Item>
               <form onSubmit={formik.handleSubmit}>
                   <TextField
@@ -80,7 +85,6 @@ function Login(props) {
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
                   />
-
                   <Button color="primary" variant="contained"  type="submit">
                     Login
                   </Button>

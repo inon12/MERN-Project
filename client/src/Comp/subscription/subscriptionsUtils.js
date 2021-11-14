@@ -2,26 +2,27 @@ import axios from 'axios'
 import subUtils from './subscriptionsUtils'
 import membersUtils from '../members/membersUtils'
 import movieUtils from '../../movies/movieUtils'
+import authHeader from '../services/authHeader '
 
 const getSubscriptions = () =>
 {
-    return axios.get("http://localhost:8000/api/subscriptions/")
+    return axios.get("http://localhost:8000/api/subscriptions/",{headers : authHeader() })
 }
 const getSubscription = (id) =>
 {
-    return axios.get("http://localhost:8000/api/subscriptions/"+id)
+    return axios.get("http://localhost:8000/api/subscriptions/"+id,{headers : authHeader() })
 }
 const postSubscription = (data) =>
 {
-    return axios.post("http://localhost:8000/api/subscriptions/",data)
+    return axios.post("http://localhost:8000/api/subscriptions/",data,{headers : authHeader() })
 }
 const putMSubscription = (id,data) =>
 {
-    return axios.put("http://localhost:8000/api/subscriptions/"+id,data)
+    return axios.put("http://localhost:8000/api/subscriptions/"+id,data,{headers : authHeader() })
 }      
 const deleteSubscription = (id) =>
 {
-    return axios.delete("http://localhost:8000/api/subscriptions/"+id)
+    return axios.delete("http://localhost:8000/api/subscriptions/"+id,{headers : authHeader() })
 }
 const getSubscriptionsByMovie= async (movieId) =>
 {

@@ -6,7 +6,7 @@ let usersSchema = new appSchema (
     {
         fullname : String,
         username : String,
-        password : String
+        password : String,
     }
 ) 
 module.exports = mongoose.model("users",usersSchema)

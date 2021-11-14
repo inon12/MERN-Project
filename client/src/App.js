@@ -5,12 +5,12 @@ import Login from './Comp/loginPage';
 import { useState } from 'react';
 function App() {
   const [token,setToken]= useState();
+
+  
   if(!token){
    return <Login setToken={setToken} />   
   }
-  return (
-    
-   
+  return ( 
     <div>
            <BrowserRouter>
             <StartPage setToken={setToken} />
