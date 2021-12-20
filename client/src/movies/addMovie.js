@@ -99,7 +99,7 @@ function AddMovie() {
                           error={formik.touched.premiered && Boolean(formik.errors.premiered)}
                           helperText={formik.touched.premiered && formik.errors.premiered}
                         />
-                        <Button color="primary" variant="contained"  type="submit">
+                        <Button color="primary" variant="contained"  type="submit" style={{margin : "5px"}}>
                           Save
                         </Button>
                         <Link to='/movies/all'>

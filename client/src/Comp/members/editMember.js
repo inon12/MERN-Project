@@ -107,7 +107,7 @@ function EditMember() {
                             helperText={formik.touched.city && formik.errors.city}
                           />
                         
-                          <Button color="primary" variant="contained"  type="submit"  >
+                          <Button color="primary" variant="contained"  type="submit"style={{margin : "5px"}}  >
                             Update
                           </Button>
                           <Link to='/members/all'>

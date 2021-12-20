@@ -6,7 +6,8 @@ import movieUtils from '../../movies/movieUtils'
 import memberUtils from './membersUtils'
 import {useHistory,Link} from 'react-router-dom'
 import * as yup from 'yup';
-import { useFormik } from 'formik';
+import { Field,useFormik,FormikProvider } from 'formik';
+
 import DatePicker from "react-datepicker";
 import { format} from 'date-fns'
 import 'react-datepicker/dist/react-datepicker.css';
@@ -96,6 +97,7 @@ function Member(props)
       });
     return (
         <Card elevation={3} style={{width: '98%', margin: '2%'}}>
+            
             <Grid container spacing={2}>
                <Grid item xs={4}>
                     <Item><h2>{props.member.fullname}</h2>
@@ -106,8 +108,8 @@ function Member(props)
                             <Link to='/movies/'><Button className={'Button'} variant='contained' color='secondary'onClick={()=>deleteMember(history,props.member._id)}>Delete</Button></Link>
                             </Item>
                 </Grid>
-                <Grid item xs={8}>
-                    <Item>
+                <Grid  item xs={8} >
+                    <Item style={{boxShadow : "none"}}>
                         <h2>Movies Watched</h2>
                         <ul>
                             {
@@ -119,32 +121,33 @@ function Member(props)
                         </ul>
                         <Button color="primary" variant="contained"  type="button" onClick={()=> setSubFlag(!subFlag)}>
                                 Subscribe to new movie
-                        </Button> <br/>
+                        </Button> <br/><br/>
                         <div style={{display : subFlag? 'none' : 'block'}}>
-                            Add new movie<br/>
+                            <h3>Add new movie</h3>
+                            <FormikProvider value={formik}>
                             <form onSubmit={formik.handleSubmit}>
-                            <select  name="movieId"
-                            value={formik.values.movieId}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            style={{ display: 'block' }}>
-                                <option value=''>select movie</option>
+                            <Field as="select" name="movieId">
+                                <option disabled value=''>select movie</option>
                                 {
                                     moviesNotWatched.map((item,index)=>
                                     {
-                                        return <option key={index} value={item.movieId}>{item.movieName}</option>
+                                       return <option key={index} value={item.movieId}>{item.movieName}</option>
                                     })
                                 }
-                            </select>
+                            </Field>
+                            <br/><br/>
+                            <span>Select Date </span> 
                             <DatePicker
                             name="date"
                             selected={startDate}
                             onChange={date => setStartDate(date)}
-                            />
+                            /><br/><br/>
                             <Button color="primary" variant="contained"  type="submit"  >
                             Subscribe
                             </Button>
                             </form>
+                            </FormikProvider>
+
                         </div>
                     </Item>
                 </Grid>

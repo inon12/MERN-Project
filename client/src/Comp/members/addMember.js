@@ -91,7 +91,7 @@ function AddMember() {
                               helperText={formik.touched.city && formik.errors.city}
                             />
                           
-                            <Button color="primary" variant="contained"  type="submit">
+                            <Button color="primary" variant="contained"  type="submit" style={{marginRight : "5px"}}>
                               Save
                             </Button>
                             <Link to='/members/all'>

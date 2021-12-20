@@ -1,4 +1,5 @@
 
+import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {Switch,Link,Route,Redirect} from 'react-router-dom'
 import AddMember from './addMember';
@@ -11,16 +12,20 @@ function MembersMain ()
 {
     return (
         <div>
-        <Link to='/members/all'>
-        <Button variant="outlined" color="primary">
-        All Members
-        </Button>
-        </Link>
-        <Link to='/members/addMember'>
-        <Button variant="outlined" color="primary">
-            Add Member
-        </Button> 
-        </Link>
+          
+          <Grid  class="menu" >
+                  <Link to='/members/all'>
+                    <Button variant="outlined" color="primary" style={{marginRight : "5px"}}>
+                       All Members 
+                     </Button>
+                  </Link>
+                  <Link to='/members/addMember'>
+                     <Button variant="outlined" color="primary">
+                     Add Member
+                    </Button> 
+                </Link>
+            </Grid>
+       
    
 
       <Switch>

@@ -3,6 +3,7 @@ import Movie from './movieComp'
 import movieUtils from './movieUtils'
 import {useParams} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import { Grid, TextField } from '@material-ui/core';
 
 
 
@@ -43,10 +44,12 @@ function AllMovies(){
     },[filter])
     return (
         <div>
-            Find Movie : <input type="text" onChange={(e)=>{setGetFilter(e.target.value)}}/>
-            <Button variant="outlined" color="primary" onClick={()=>setFilter(getfilter)}>
+            <Grid style={{marginLeft : "50px"}}>
+            Find Movie : <input type="text" onChange={(e)=>{setGetFilter(e.target.value)}} style={{marginRight : "5px"}}/>
+            <Button variant="outlined" color="primary" style={{padding : "0.9px"}} onClick={()=>setFilter(getfilter)}>
                  Find
-            </Button>  
+            </Button>
+            </Grid>  
             {
                 movies.map((item,index)=>
                 {

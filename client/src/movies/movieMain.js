@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import AllMovies from './MoviesComp'
 import EditMovie from './EditMovie';
 import AddMovie from './addMovie';
+import { Grid } from '@material-ui/core';
 
 
 function MoviesMain(){
@@ -11,18 +12,18 @@ function MoviesMain(){
   
     return (
         <div>
-      
-            <Link to='/movies/all'>
-            <Button variant="outlined" color="primary">
-                 All Movies
-            </Button>
-            </Link>
-            <Link to='/movies/addmovie/'>
-            <Button variant="outlined" color="primary">
-                 Add Movie
-            </Button> 
-            </Link>
- 
+            <Grid  class="menu" >
+                <Link to='/movies/all'>
+                <Button variant="outlined" color="primary"style={{marginRight : "5px"}}>
+                    All Movies
+                </Button>
+                </Link>
+                <Link to='/movies/addmovie/'>
+                <Button variant="outlined" color="primary">
+                    Add Movie
+                </Button> 
+                </Link>
+            </Grid>
             <Switch>
                <Route path='/movies/all/:id' component={AllMovies}  />
                 <Route path='/movies/all/' component={AllMovies}  />

@@ -34,7 +34,7 @@ function Movie(props)
     },[])
 
     return (
-    <Paper style={{width: '100%', margin: '2%'}}>
+    <Paper style={{width: 'auto', margin: '2%'}}>
       <div id={props.movie._id} className={'anchorShift'}></div>
         <p style={{fontSize: 9, color: "GrayText"}}>{props.movie._id}</p>
         <Grid item container direction='column' spacing={2}>
