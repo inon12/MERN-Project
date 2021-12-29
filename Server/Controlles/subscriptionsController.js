@@ -1,31 +1,32 @@
 const express = require ('express')
 
 const subscriptionsBL = require('../Models/subscriptionsBL')
+const verifyToken = require("../Middelware/authJwt")
 
 const appRouter = express.Router();
 
 appRouter.route('/')
-.get(async function(req,resp)
+.get(verifyToken,async function(req,resp)
 {
    let result = await subscriptionsBL.getAll();
    return resp.json(result);
 })
 appRouter.route('/:id')
-.get(async function(req,resp)
+.get(verifyToken,async function(req,resp)
 {
     let id = req.params.id;
     let result = await subscriptionsBL.getById(id)
     return resp.json(result)
 })
 appRouter.route('/')
-.post(async function(req,resp)
+.post(verifyToken,async function(req,resp)
 {
     let newMovie = req.body;
     let result = await subscriptionsBL.addNew(newMovie)
     return resp.json(result)
 })
 appRouter.route('/:id')
-.put(async function(req,resp)
+.put(verifyToken,async function(req,resp)
 {
     let id = req.params.id
     let newMovie = req.body;
@@ -33,7 +34,7 @@ appRouter.route('/:id')
     return resp.json(result)
 })
 appRouter.route('/:id')
-.delete(async function(req,resp)
+.delete(verifyToken,async function(req,resp)
 {
     let id = req.params.id
     let result = await subscriptionsBL.delete(id)

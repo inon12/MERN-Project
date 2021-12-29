@@ -1,3 +1,4 @@
+
 import {useState,useEffect} from 'react'
 import Movie from './movieComp'
 import movieUtils from './movieUtils'
@@ -53,7 +54,7 @@ function AllMovies(){
             {
                 movies.map((item,index)=>
                 {
-                    return <Movie key={index} movie={item}></Movie>
+                    return <Movie key={item._id} movie={item}></Movie>
                 })
             }
           

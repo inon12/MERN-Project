@@ -2,7 +2,7 @@
 import {useState,useEffect} from 'react'
 import Button from '@material-ui/core/Button';
 import subUtils from '../subscription/subscriptionsUtils'
-import movieUtils from '../../movies/movieUtils'
+import movieUtils from '../movies/movieUtils'
 import memberUtils from './membersUtils'
 import {useHistory,Link} from 'react-router-dom'
 import * as yup from 'yup';

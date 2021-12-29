@@ -77,6 +77,7 @@ function Login(props) {
                   />
                   <TextField
                     fullWidth
+                    type="password"
                     id="password"
                     name="password"
                     label="password"

@@ -13,7 +13,7 @@ function MembersMain ()
     return (
         <div>
           
-          <Grid  class="menu" >
+          <Grid  className="menu" >
                   <Link to='/members/all'>
                     <Button variant="outlined" color="primary" style={{marginRight : "5px"}}>
                        All Members 

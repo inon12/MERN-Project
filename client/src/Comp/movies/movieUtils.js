@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import authHeader from '../Comp/services/authHeader '
+import authHeader from '../services/authHeader '
 
 const getMovies = () =>
 {

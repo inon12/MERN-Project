@@ -1,5 +1,5 @@
 import {Switch,Route,Link,Redirect} from 'react-router-dom'
-import MoviesMain from '../movies/movieMain'
+import MoviesMain from './movies/movieMain'
 import { Button, Container, Grid } from '@material-ui/core'
 import MembersMain from './members/membersMain'
 import { useEffect, useState } from 'react'
@@ -50,7 +50,9 @@ function StartPage(props)
                </Container>
                Hey {fullname},
                <Link to=''>
-               <Button  variant="text" style={{color: 'white'}} onClick={()=>props.setToken(false)}>
+               <Button  variant="text" style={{color: 'white'}} onClick={()=>{props.setToken(false)
+                 localStorage.setItem("token",null)
+               }}>
                     Log Out
                </Button>
                </Link>

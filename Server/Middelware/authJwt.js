@@ -5,7 +5,7 @@ const verifyToken = (req,res,next) =>
     const token = req.headers["x-access-token"]
     if (!token)
     {
-        res.send("No token");
+        res.send("No access token");
     }
     else
     {

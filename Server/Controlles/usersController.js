@@ -3,7 +3,6 @@ const express = require ('express')
 const usersBL = require('../Models/usersBL')
 
 const appRouter = express.Router();
-// const verifyToken = require('../Middelware/authJwt')
 
 appRouter.route('/')
 .get(async function(req,resp)
@@ -11,12 +10,6 @@ appRouter.route('/')
    let result = await usersBL.getAll();
    return resp.json(result);
 })
-
-// appRouter.get('/:id',verifyToken,(async function(req,resp)
-// {
-//    let result = await usersBL.getAll();
-//    return resp.json(result);
-// }))
 
 appRouter.route('/:id')
 .get(async function(req,resp)

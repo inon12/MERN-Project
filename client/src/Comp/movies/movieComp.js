@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 import { Link, useHistory } from "react-router-dom";
 import movieUtils from './movieUtils';
-import subUtils from '../Comp/subscription/subscriptionsUtils'
+import subUtils from '../subscription/subscriptionsUtils'
 import {Grid, Paper } from "@material-ui/core";
 import React from 'react';
 import Button from '@material-ui/core/Button';
@@ -29,6 +29,7 @@ function Movie(props)
     {
         async function fetchData() {
             setSubscriptions(await subUtils.getSubscriptionsByMovie(props.movie._id))
+            console.log(props.movie.id)
         }
         fetchData();
     },[])
@@ -45,7 +46,6 @@ function Movie(props)
                 <Typography variant='subtitle2'>
                 geners:
                 {
-                    
                     props.movie.genres.map((item,index)=>
                     {
                         if(props.movie.genres.length!=(index+1))
@@ -82,6 +82,7 @@ function Movie(props)
                     {
                         subscriptions.map((item,index)=>
                         {
+                            
                             return <li key={index}><Link to="/members/all">{item.memberName}</Link> , {item.date} </li>
                         })
                     }

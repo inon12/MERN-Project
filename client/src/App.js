@@ -5,6 +5,7 @@ import Login from './Comp/loginPage';
 import { useState } from 'react';
 function App() {
   const [token,setToken]= useState();
+  // localStorage.setItem("token",response.data.token);
 
   
   if(!token){

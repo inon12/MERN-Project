@@ -5,15 +5,15 @@ import AllMovies from './MoviesComp'
 import EditMovie from './EditMovie';
 import AddMovie from './addMovie';
 import { Grid } from '@material-ui/core';
-
+import { useHistory } from 'react-router'
 
 function MoviesMain(){
 
-  
+    const history = useHistory()
     return (
         <div>
-            <Grid  class="menu" >
-                <Link to='/movies/all'>
+            <Grid  className="menu" >
+                <Link to='/movies' >
                 <Button variant="outlined" color="primary"style={{marginRight : "5px"}}>
                     All Movies
                 </Button>

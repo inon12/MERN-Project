@@ -1,7 +1,7 @@
 import axios from 'axios'
 import subUtils from './subscriptionsUtils'
 import membersUtils from '../members/membersUtils'
-import movieUtils from '../../movies/movieUtils'
+import movieUtils from '../movies/movieUtils'
 import authHeader from '../services/authHeader '
 
 const getSubscriptions = () =>
